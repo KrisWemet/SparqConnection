@@ -1,6 +1,6 @@
 // app/api/daily/today/route.ts
 import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase-server";
+import { createClient, createServiceRoleClient } from "@/lib/supabase-server";
 import { DailyPlanSchema, type DailyPlan } from "@/lib/schemas";
 import { formatInTimeZone } from "date-fns-tz";
 import { 
@@ -32,9 +32,10 @@ export async function GET() {
       timezone: tz
     })
 
-    // If no authenticated user, return basic canonical content
+    // If no authenticated user, return basic canonical content using service role
     if (userError || !user) {
-      return await getCanonicalFallback(supabase, today)
+      const serviceSupabase = createServiceRoleClient()
+      return await getCanonicalFallback(serviceSupabase, today)
     }
 
     // 1) Check for existing personalized plan in database
@@ -134,8 +135,9 @@ export async function GET() {
       error_message: error instanceof Error ? error.message : 'Unknown error'
     })
     
-    // Ultimate fallback
-    return await getCanonicalFallback(supabase, formatInTimeZone(new Date(), 'UTC', 'yyyy-MM-dd'))
+    // Ultimate fallback - use service role client to bypass RLS
+    const serviceSupabase = createServiceRoleClient()
+    return await getCanonicalFallback(serviceSupabase, formatInTimeZone(new Date(), 'UTC', 'yyyy-MM-dd'))
   }
 }
 
