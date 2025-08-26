@@ -1,0 +1,16 @@
+{
+  "personalize.card.title": "Personalize Sparq?",
+  "personalize.card.body": "Want Sparq to match your style? 2–3 minutes. Optional. You can change this anytime.",
+  "personalize.card.cta_start": "Start",
+  "personalize.card.cta_later": "Maybe later",
+  "personalize.result.label": "Your current pattern: {{pattern}} (last updated {{date}})",
+  "personalize.share.tips": "Share only what helps me (tips), not labels.",
+  "personalize.share.labels": "Share labels (I can turn this off anytime).",
+  "personalize.retake": "Retake micro‑quizzes",
+  "personalize.edit": "Edit my style",
+  "personalize.disclaimer": "These are patterns, not diagnoses; adjust anytime.",
+  "personalize.options": "See other options",
+  "common.back": "Back",
+  "common.save": "Save"
+}
+

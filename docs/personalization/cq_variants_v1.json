@@ -1,0 +1,24 @@
+{
+  "version": "cq_variants_v1",
+  "steps": [
+    {
+      "step_id": "cq.daily_question",
+      "base": { "text": "What’s one small thing that helped you feel close this week?", "copy_variant_id": "base" },
+      "variants": [
+        {
+          "copy_variant_id": "words_affirming_nudge",
+          "conditions": { "gte": ["flags.words_affirming", 0.7] },
+          "text": "After: try one sentence of appreciation. What’s one small thing that helped you feel close this week?",
+          "pairing_overlays": { "anx_avoid": { "text": "Balance clarity + a short pause: ‘I’m here, and I’ll check in at 7pm.’" } }
+        },
+        {
+          "copy_variant_id": "time_affirming_cta",
+          "conditions": { "gte": ["flags.time_affirming", 0.7] },
+          "text": "Consider a 10‑min moment tonight. What helped you feel close this week?"
+        }
+      ],
+      "fallback": { "copy_variant_id": "base" }
+    }
+  ]
+}
+

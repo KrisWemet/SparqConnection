@@ -1,0 +1,63 @@
+🔧 Using embedding model: text-embedding-3-small
+🚀 Starting Sparq Knowledge Base Indexing
+Configuration: {
+  includeDocs: true,
+  includeSchemas: true,
+  includeDesign: false,
+  recreateTable: false,
+  verbose: false,
+  KB_SCHEMA: 'ai',
+  KB_TABLE: 'kb_chunks',
+  KB_TABLE_SHAPE: 'simple',
+  EMBEDDING_MODEL: 'text-embedding-3-small',
+  EMBEDDING_DIMENSIONS: 1536
+}
+🗄️  Using ai.kb_chunks (shape: simple)
+📁 Found 21 files to process
+
+📝 Processing batch 1/3
+  📄 Processing: docs/VOICE_AND_SAFETY.md
+  📄 Processing: docs/UX_TODAY_FLOW.md
+  📄 Processing: docs/TERMS.md
+  📄 Processing: docs/README_INDEX.md
+  📄 Processing: docs/QUESTS_STARTER.md
+  📄 Processing: docs/PRODUCT_OVERVIEW.md
+  📄 Processing: docs/PRIVACY_POLICY.md
+  📄 Processing: docs/NOTIF_STRATEGY.md
+  📄 Processing: docs/MODEL_CONTEXT_PROTOCOLS.md
+  📄 Processing: docs/IMPLEMENTATION.md
+
+📝 Processing batch 2/3
+  📄 Processing: docs/EVALS.md
+  📄 Processing: docs/DATA_LIFECYCLE.md
+  📄 Processing: docs/CONTENT_TAGS.md
+  📄 Processing: docs/BACKEND_REQUIREMENTS.md
+  📄 Processing: docs/AI_MODELS.md
+  📄 Processing: docs/AI_GUARDRAILS.md
+  📄 Processing: docs/PROMPTS/tip_coach.user.md
+  📄 Processing: docs/PROMPTS/tip_coach.system.md
+  📄 Processing: docs/PROMPTS/personalizer.user.md
+  📄 Processing: docs/PROMPTS/personalizer.system.md
+
+📝 Processing batch 3/3
+  📄 Processing: src/lib/schemas.ts
+
+🎉 Indexing Complete!
+==================================================
+📁 Files processed: 21
+📝 Chunks created: 0
+⏱️  Total time: 23s
+💰 Estimated cost: $0.0000
+
+⚠️  Errors (21):
+  - Failed to process /Users/chrisouimet/Sparq-Aug/sparq/docs/VOICE_AND_SAFETY.md: Error: Failed to store chunk batch: The schema must be one of the following: public, graphql_public
+  - Failed to process /Users/chrisouimet/Sparq-Aug/sparq/docs/UX_TODAY_FLOW.md: Error: Failed to store chunk batch: The schema must be one of the following: public, graphql_public
+  - Failed to process /Users/chrisouimet/Sparq-Aug/sparq/docs/TERMS.md: Error: Failed to store chunk batch: The schema must be one of the following: public, graphql_public
+  - Failed to process /Users/chrisouimet/Sparq-Aug/sparq/docs/README_INDEX.md: Error: Failed to store chunk batch: The schema must be one of the following: public, graphql_public
+  - Failed to process /Users/chrisouimet/Sparq-Aug/sparq/docs/QUESTS_STARTER.md: Error: Failed to store chunk batch: The schema must be one of the following: public, graphql_public
+  ... and 16 more
+
+💡 Next steps:
+  - Run retrieval tests: tsx scripts/retrieve.ts --test
+  - Query specific agent: tsx scripts/retrieve.ts --agent=security --query="RLS policies"
+  - View embeddings in Supabase dashboard
