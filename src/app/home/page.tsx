@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase-server'
 import ProgressRing from '@/components/home/progress-ring'
 import Button from '@/components/ui/button'
+import NudgeLink from '@/components/ui/nudge-link'
 import { CoachMarks } from '@/components/ui/coach-marks'
 import SessionEvents from '@/components/analytics/session-events'
 
@@ -80,9 +81,9 @@ export default async function HomePage() {
                 <span>{partnerName || 'Paired partner'}</span>
               </div>
             ) : (
-              <Button as="a" href="/connections" variant="ghost" className="text-blue-600 hover:text-blue-800 text-sm font-medium px-0" onClick={() => trackEvent('nudge_click', { where: 'home_invite_partner' })}>Invite your partner</Button>
+              <NudgeLink href="/connections" where="home_invite_partner" variant="ghost" className="text-blue-600 hover:text-blue-800 text-sm font-medium px-0">Invite your partner</NudgeLink>
             )}
-            <Button as="a" href="/today" onClick={() => trackEvent('nudge_click', { where: 'home_start_flow' })}>Start today’s 5-minute flow</Button>
+            <NudgeLink href="/today" where="home_start_flow">Start today’s 5-minute flow</NudgeLink>
           </div>
         </section>
 
@@ -103,7 +104,7 @@ export default async function HomePage() {
           <div className="bg-white border rounded-2xl shadow-sm p-6">
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-lg font-semibold text-gray-900">Today</h2>
-              <Button as="a" href="/today" variant="ghost" className="text-sm text-blue-600 hover:text-blue-800 px-0" onClick={() => trackEvent('nudge_click', { where: 'home_resume_flow' })}>Resume</Button>
+              <NudgeLink href="/today" where="home_resume_flow" variant="ghost" className="text-sm text-blue-600 hover:text-blue-800 px-0">Resume</NudgeLink>
             </div>
             <ul className="text-gray-700 space-y-1 text-[15px]">
               <li>⬜ How I’ll show up today</li>
