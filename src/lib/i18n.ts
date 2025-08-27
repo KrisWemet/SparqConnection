@@ -1,28 +1,14 @@
-import fs from 'fs'
-import path from 'path'
+// Client-safe loader: bundle JSON at build time (resolveJsonModule=true)
+// If multiple locales are needed, extend to select by locale.
+// Default uses en-US file.
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore - json import typings
+import uiStrings from '../../docs/personalization/ui_strings.en-US.json'
 
-let cache: Record<string, any> | null = null
-let mtimeMs = 0
-
-function load(locale: string = 'en-US'): Record<string, string> {
-  try {
-    const file = path.join(process.cwd(), `docs/personalization/ui_strings.${locale}.json`)
-    const stat = fs.statSync(file)
-    if (!cache || stat.mtimeMs !== mtimeMs) {
-      const raw = fs.readFileSync(file, 'utf-8')
-      cache = JSON.parse(raw)
-      mtimeMs = stat.mtimeMs
-    }
-    return cache || {}
-  } catch {
-    return {}
-  }
-}
-
-export function t(key: string, params?: Record<string, string | number>, locale?: string): string {
-  const dict = load(locale)
-  let out = (dict && dict[key]) || key
-  if (process.env.NODE_ENV !== 'production' && (!dict || !(key in dict))) {
+export function t(key: string, params?: Record<string, string | number>): string {
+  const dict = (uiStrings || {}) as Record<string, string>
+  let out = dict[key] ?? key
+  if (process.env.NODE_ENV !== 'production' && !(key in dict)) {
     // eslint-disable-next-line no-console
     console.warn(`[i18n] Missing key: ${key}`)
   }
@@ -33,4 +19,3 @@ export function t(key: string, params?: Record<string, string | number>, locale?
   }
   return out
 }
-
